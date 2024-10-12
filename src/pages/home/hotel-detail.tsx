@@ -54,7 +54,7 @@ export default function HotelDetail(): React.ReactElement {
                         >
                             <TileLayer
                                 {...{
-                                    url: "https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png?lang=en",
+                                    url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?lang=en",
                                     attribution: "&copy; OpenStreetMap contributors"
                                 }}
                             />
