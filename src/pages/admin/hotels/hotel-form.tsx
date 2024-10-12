@@ -5,15 +5,18 @@ import {
   FormLabel,
   Button,
   Stack,
+  Select,
 } from '@chakra-ui/react';
 import { Hotel } from '../../../types';
 
 interface HotelFormProps {
-  hotel: Hotel | null; 
-  onSubmit: (hotel: Hotel) => void; 
+  hotel: Hotel | null;
+  onSubmit: (hotel: Hotel) => void;
 }
 
 const HotelForm: React.FC<HotelFormProps> = ({ hotel, onSubmit }) => {
+  const [hotels, setHotels] = React.useState<Hotel[]>([]);
+  const uniqueBrands = Array.from(new Set(hotels.map(hotel => hotel.brand)));
   const [formData, setFormData] = useState<Hotel>({
     id: 0,
     name: '',
@@ -24,7 +27,13 @@ const HotelForm: React.FC<HotelFormProps> = ({ hotel, onSubmit }) => {
     image: '',
     price: 0,
   });
-
+  React.useLayoutEffect(() => {
+    const localHotel = localStorage.getItem('hotels')
+    if (localHotel !== null && localHotel?.length > 0) {
+      const retrievedHotel = JSON.parse(localHotel);
+      setHotels(retrievedHotel);
+    };
+  }, []);
   useEffect(() => {
     if (hotel) {
       setFormData(hotel);
@@ -35,7 +44,7 @@ const HotelForm: React.FC<HotelFormProps> = ({ hotel, onSubmit }) => {
     const { name, value } = e.target;
 
     if (name === 'price') {
-      setFormData((prev) => ({ ...prev, [name]: parseFloat(value) })); 
+      setFormData((prev) => ({ ...prev, [name]: parseFloat(value) }));
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }));
     }
@@ -69,7 +78,10 @@ const HotelForm: React.FC<HotelFormProps> = ({ hotel, onSubmit }) => {
 
       <FormControl>
         <FormLabel>Brand</FormLabel>
-        <Input name="brand" value={formData.brand} onChange={handleChange} />
+        <Select name="brand" value={formData.brand} onChange={(e: any) => handleChange(e)}>
+          {Array.isArray(uniqueBrands) &&
+            uniqueBrands.map((item, index) => <option key={index} value={item}>{item}</option>)
+          }</Select>
       </FormControl>
 
       <FormControl>
