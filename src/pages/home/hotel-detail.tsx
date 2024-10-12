@@ -46,13 +46,17 @@ export default function HotelDetail(): React.ReactElement {
                     <Box mt={4}>
                         <Heading as="h2" size="md" mb={2}>Location: </Heading>
                         <MapContainer
-                            center={[hotel.location.lat, hotel.location.lng]}
-                            zoom={70}
+                            {...{
+                                center: [hotel.location.lat, hotel.location.lng],
+                                zoom: 70
+                            }}
                             style={{ height: '600px', width: '100%' }}
                         >
                             <TileLayer
-                                url="https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png?lang=en"
-                                attribution="&copy; OpenStreetMap contributors"
+                                {...{
+                                    url: "https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png?lang=en",
+                                    attribution: "&copy; OpenStreetMap contributors"
+                                }}
                             />
                             <Marker position={[hotel.location.lat, hotel.location.lng]}>
                                 <Popup>
