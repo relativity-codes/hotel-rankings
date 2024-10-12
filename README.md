@@ -1,5 +1,7 @@
 # React + TypeScript + Vite
-
+```
+https://hotel-rankings.vercel.app/
+```
 A simple Vite project using React, TypeScript, Tailwind and Chakra UI.
 
 ## Setup
