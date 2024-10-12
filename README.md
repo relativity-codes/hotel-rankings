@@ -1,7 +1,6 @@
 # React + TypeScript + Vite
-```
-https://hotel-rankings.vercel.app/
-```
+**View live** <a href='https://hotel-rankings.vercel.app'>https://hotel-rankings.vercel.app</a>
+
 A simple Vite project using React, TypeScript, Tailwind and Chakra UI.
 
 ## Setup
