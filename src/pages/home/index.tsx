@@ -1,4 +1,4 @@
-import { Grid, Box, Image, Text, Heading, VStack, HStack, Input, Select } from '@chakra-ui/react';
+import { Grid, Box, Image, Text, Heading, VStack, HStack, Input, Select, GridItem } from '@chakra-ui/react';
 import React from 'react'
 import { Hotel } from '../../types';
 import { inithotels } from '../../initailHotelData';
@@ -52,29 +52,33 @@ export default function index(): React.ReactElement {
     }, []);
 
     return (
-        <Box className='flex flex-col justify-center items-start py-4 w-full h-auto'>
-            <Box padding={5} className='flex flex-row gap-4 justify-between items-center p-12 mr-auto w-full max-md:flex-wrap'>
-                <Input
-                    placeholder="Search by hotel name, city, or brand"
-                    value={searchQuery}
-                    onChange={handleSearchChange}
-                    className='flex flex-grow h-12 rounded-md border border-gray-600 border-solid bg-inherit'
-                    border={'1px'}
-                />
-                <Select
-                    placeholder="Filter by Brand"
-                    value={selectedBrand}
-                    onChange={handleBrandChange}
-                    className='flex flex-shrink w-96 h-12 rounded-md border-gray-600'
-                    border={'1px'}
-                >
-                    {Array.isArray(uniqueBrands) &&
-                        uniqueBrands.map((item, index) => <option key={index} value={item}>{item}</option>)
-                    }
-                    <option value=''>all</option>
-                </Select>
-            </Box>
-            <Box className='flex flex-row items-center p-12 w-full h-auto justify-'>
+        <Grid className='grid py-4 w-full h-auto grid-rows-12'>
+            <Grid gridTemplateColumns={'repeat(2, minmax(0, 1fr))'} padding={5} className='row-span-1 gap-4 w-full'>
+                <GridItem>
+                    <Input
+                        placeholder="Search by hotel name, city, or brand"
+                        value={searchQuery}
+                        onChange={handleSearchChange}
+                        className='w-auto h-12 rounded-md border border-gray-600 border-solid bg-inherit'
+                        border={'1px'}
+                    />
+                </GridItem>
+                <GridItem>
+                    <Select
+                        placeholder="Filter by Brand"
+                        value={selectedBrand}
+                        onChange={handleBrandChange}
+                        className='w-auto h-12 rounded-md border-gray-600'
+                        border={'1px'}
+                    >
+                        {Array.isArray(uniqueBrands) &&
+                            uniqueBrands.map((item, index) => <option key={index} value={item}>{item}</option>)
+                        }
+                        <option value=''>all</option>
+                    </Select>
+                </GridItem>
+            </Grid>
+            <Box className='block p-12 w-full h-auto row-span-11'>
                 {filteredHotels.length >= 1 ? <Grid
                     className='w-full h-full'
                     templateColumns={{ base: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }}
@@ -91,7 +95,7 @@ export default function index(): React.ReactElement {
                     </Box>
                 }
             </Box>
-        </Box>
+        </Grid>
     )
 };
 
@@ -115,7 +119,7 @@ const Item = ({ hotel }: { hotel: Hotel }) => {
                 <Text fontSize="sm" color="gray.500">{hotel.address}</Text>
                 <HStack justifyContent="space-between" w="100%">
                     <Text fontWeight="bold" fontSize="lg">${hotel.price}/night</Text>
-                    {/* <Text fontSize="sm" color="blue.500">View on map</Text> */}
+                    <Text fontSize="sm" color="blue.500">View on map</Text>
                 </HStack>
             </VStack>
         </Box>

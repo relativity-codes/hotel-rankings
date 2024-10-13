@@ -1,13 +1,33 @@
 import React from 'react';
+import { Grid, GridItem, Text, Box } from '@chakra-ui/react';
+
 function Notfound(): React.ReactElement {
     return (
-        <div className='flex flex-row justify-center items-center w-full h-full'>
-            <div className='flex flex-col gap-4 justify-center items-center w-auto'>
-                <p className='flex text-3xl font-extrabold'>404</p>
-                <p className='flex text-base'>Page Not Found</p>
-            </div>
-        </div>
-    )
+        <Grid
+            w="full"
+            h="full"
+            justifyContent="center"
+            alignItems="center"
+        >
+            <GridItem>
+                <Box
+                    display="flex"
+                    flexDirection="column"
+                    gap={4}
+                    justifyContent="center"
+                    alignItems="center"
+                >
+                    <Text fontSize="3xl" fontWeight="extrabold">
+                        404
+                    </Text>
+                    <Text fontSize="base">
+                        Page Not Found
+                    </Text>
+                </Box>
+            </GridItem>
+        </Grid>
+    );
 }
 
-export default Notfound
+export default Notfound;
+

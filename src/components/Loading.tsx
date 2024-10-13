@@ -1,13 +1,23 @@
-import {CircularProgress } from '@chakra-ui/react';
+import { CircularProgress, Grid, GridItem, Box } from '@chakra-ui/react';
 import React from 'react';
+
 function Loading(): React.ReactElement {
     return (
-        <div className='w-full h-full min-h-[70vh] flex flex-col justify-center items-center'>
-            <div className='flex flex-row gap-4 justify-center items-center w-auto'>
-                <CircularProgress isIndeterminate color='green.300' />
-            </div>
-        </div>
-    )
+        <Grid
+            w="full"
+            h="full"
+            minH="70vh"
+            templateRows="1fr"
+            justifyContent="center"
+            alignItems="center"
+        >
+            <GridItem>
+                <Box display="flex" flexDirection="row" gap={4} justifyContent="center" alignItems="center">
+                    <CircularProgress isIndeterminate color="green.300" />
+                </Box>
+            </GridItem>
+        </Grid>
+    );
 }
 
-export default Loading
+export default Loading;
