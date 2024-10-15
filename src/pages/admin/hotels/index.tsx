@@ -114,7 +114,7 @@ export default function HotelList(): React.ReactElement {
           maxWidth={{ base: '100%', md: '900px' }}
           width="100%"
         >
-          <DrawerHeader className='flex flex-row justify-between items-center'>
+          <DrawerHeader display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
             <Box className='flex'>{selectedHotel ? 'Edit Hotel' : 'Add New Hotel'} </Box>
             <Button className='flex' variant={'outline'} onClick={onClose}>
               Close Drawer

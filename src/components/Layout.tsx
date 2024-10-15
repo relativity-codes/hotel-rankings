@@ -8,7 +8,7 @@ function Layout({ children }: React.PropsWithChildren): React.ReactElement {
             templateRows="auto 1fr"
             w="100vw"
             h="100vh"
-            className='bg-slate-200'
+            backgroundColor={'rgb(226 232 240 / 1)'}
         >
             <GridItem>
                 <NavBar />

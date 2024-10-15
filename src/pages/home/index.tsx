@@ -52,15 +52,18 @@ export default function index(): React.ReactElement {
     }, []);
 
     return (
-        <Grid className='grid py-4 w-full h-auto grid-rows-12'>
-            <Grid gridTemplateColumns={'repeat(2, minmax(0, 1fr))'} padding={5} className='row-span-1 gap-4 w-full'>
+        <Grid templateRows="repeat(12, auto)" py={4} width="100%" height="auto">
+            <Grid templateColumns="repeat(2, minmax(0, 1fr))" px={6} gap={4} width="100%">
                 <GridItem>
                     <Input
                         placeholder="Search by hotel name, city, or brand"
                         value={searchQuery}
                         onChange={handleSearchChange}
-                        className='w-auto h-12 rounded-md border border-gray-600 border-solid bg-inherit'
-                        border={'1px'}
+                        height="12"
+                        border="1px solid"
+                        borderColor="gray.600"
+                        bg="inherit"
+                        borderRadius="md"
                     />
                 </GridItem>
                 <GridItem>
@@ -68,33 +71,39 @@ export default function index(): React.ReactElement {
                         placeholder="Filter by Brand"
                         value={selectedBrand}
                         onChange={handleBrandChange}
-                        className='w-auto h-12 rounded-md border-gray-600'
-                        border={'1px'}
+                        height="12"
+                        border="1px solid"
+                        borderColor="gray.600"
+                        borderRadius="md"
                     >
                         {Array.isArray(uniqueBrands) &&
-                            uniqueBrands.map((item, index) => <option key={index} value={item}>{item}</option>)
-                        }
-                        <option value=''>all</option>
+                            uniqueBrands.map((item, index) => (
+                                <option key={index} value={item}>{item}</option>
+                            ))}
+                        <option value=''>All</option>
                     </Select>
                 </GridItem>
             </Grid>
-            <Box className='block p-12 w-full h-auto row-span-11'>
-                {filteredHotels.length >= 1 ? <Grid
-                    className='w-full h-full'
-                    templateColumns={{ base: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }}
-                    gap={6}
-                    p={{ base: 4, md: 6 }}
-                >
 
-                    {filteredHotels.map((hotel, index) =>
-                        <Item hotel={hotel} key={index} />
-                    )}
-                </Grid> :
-                    <Box className='flex justify-center items-center w-full h-full min-h-96'>
-                        <Box> No hotels available </Box>
+            <GridItem py={4} width="100%" height="auto" rowSpan={11}>
+                {filteredHotels.length >= 1 ? (
+                    <Grid
+                        width="100%"
+                        height="100%"
+                        templateColumns={{ base: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }}
+                        gap={6}
+                        p={{ base: 4, md: 6 }}
+                    >
+                        {filteredHotels.map((hotel, index) => (
+                            <Item hotel={hotel} key={index} />
+                        ))}
+                    </Grid>
+                ) : (
+                    <Box display="flex" justifyContent="center" alignItems="center" width="100%" height="100%" minHeight="96">
+                        <Box>No hotels available</Box>
                     </Box>
-                }
-            </Box>
+                )}
+            </GridItem>
         </Grid>
     )
 };
